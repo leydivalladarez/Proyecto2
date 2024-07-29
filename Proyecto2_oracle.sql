@@ -1,0 +1,525 @@
+--------------------------------------------------------
+-- Archivo creado  - lunes-julio-29-2024   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table ACTIVO
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."ACTIVO" 
+   (	"ID" NUMBER, 
+	"NOMBRE" VARCHAR2(45 BYTE), 
+	"PERIODOS_DEPRECIACION_TOTAL" NUMBER, 
+	"VALOR_COMPRA" NUMBER(8,2), 
+	"TIPO_ACTIVO_CODIGO" NUMBER
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ARTICULO
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."ARTICULO" 
+   (	"CODIGO" NUMBER, 
+	"NOMBRE" VARCHAR2(45 BYTE), 
+	"PRECIO" NUMBER(8,2)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table CIUDAD
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."CIUDAD" 
+   (	"CODIGO" NUMBER, 
+	"NOMBRE" VARCHAR2(45 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table CLIENTE
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."CLIENTE" 
+   (	"ID" NUMBER, 
+	"RUC" VARCHAR2(13 BYTE), 
+	"NOMBRE" VARCHAR2(100 BYTE), 
+	"DIRECCION" VARCHAR2(200 BYTE) DEFAULT NULL
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table COMPROBANTE_CONTABLE
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."COMPROBANTE_CONTABLE" 
+   (	"NUMERO" NUMBER, 
+	"FECHA" DATE, 
+	"TIPO_COMPROBANTE_CODIGO" NUMBER
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table CUENTA
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."CUENTA" 
+   (	"CODIGO" NUMBER, 
+	"NOMBRE" VARCHAR2(45 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table DEPRECIACION
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."DEPRECIACION" 
+   (	"NUMERO" NUMBER, 
+	"FECHA" DATE
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table EMPLEADO
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."EMPLEADO" 
+   (	"CEDULA" VARCHAR2(10 BYTE), 
+	"NOMBRE" VARCHAR2(100 BYTE), 
+	"APELLIDO" VARCHAR2(100 BYTE), 
+	"DIRECCION" VARCHAR2(200 BYTE) DEFAULT NULL
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table FACTURA
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."FACTURA" 
+   (	"ID" NUMBER, 
+	"FECHA" DATE, 
+	"CLIENTE_ID" NUMBER, 
+	"CIUDAD_CODIGO" NUMBER
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table MODULO_ROL
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."MODULO_ROL" 
+   (	"MODULO_ID" NUMBER, 
+	"ROL_ID" NUMBER
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table MODULOS
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."MODULOS" 
+   (	"ID" NUMBER, 
+	"NOMBRE" VARCHAR2(45 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table MOTIVO
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."MOTIVO" 
+   (	"CODIGO" NUMBER, 
+	"DESCRIPCION" VARCHAR2(100 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table NOMINA
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."NOMINA" 
+   (	"NUMERO" NUMBER, 
+	"EMPLEADO_CEDULA" VARCHAR2(10 BYTE), 
+	"FECHA" DATE
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ROLES
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."ROLES" 
+   (	"ID" NUMBER, 
+	"NOMBRE" VARCHAR2(45 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table USUARIOS
+--------------------------------------------------------
+
+  CREATE TABLE "USUARIO_LEYDI"."USUARIOS" 
+   (	"ID" NUMBER, 
+	"NOMBRE" VARCHAR2(100 BYTE), 
+	"ROL_ID" NUMBER
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+REM INSERTING into USUARIO_LEYDI.ACTIVO
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.ARTICULO
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.CIUDAD
+SET DEFINE OFF;
+Insert into USUARIO_LEYDI.CIUDAD (CODIGO,NOMBRE) values (1,'Quito');
+Insert into USUARIO_LEYDI.CIUDAD (CODIGO,NOMBRE) values (2,'Guayaquil');
+Insert into USUARIO_LEYDI.CIUDAD (CODIGO,NOMBRE) values (4,'Ambatoooo');
+Insert into USUARIO_LEYDI.CIUDAD (CODIGO,NOMBRE) values (5,'Loja');
+Insert into USUARIO_LEYDI.CIUDAD (CODIGO,NOMBRE) values (6,'Guayas');
+REM INSERTING into USUARIO_LEYDI.CLIENTE
+SET DEFINE OFF;
+Insert into USUARIO_LEYDI.CLIENTE (ID,RUC,NOMBRE,DIRECCION) values (1,'1723456784001','Peter Parker','Av. Amazonas');
+Insert into USUARIO_LEYDI.CLIENTE (ID,RUC,NOMBRE,DIRECCION) values (2,'1548576543002','Demi Lovato','Av. Colon y America');
+Insert into USUARIO_LEYDI.CLIENTE (ID,RUC,NOMBRE,DIRECCION) values (3,'1745676543001','Juan Perez','Cotocollao');
+Insert into USUARIO_LEYDI.CLIENTE (ID,RUC,NOMBRE,DIRECCION) values (4,'0583948576001','Viviana Perez','Rumuñahui');
+Insert into USUARIO_LEYDI.CLIENTE (ID,RUC,NOMBRE,DIRECCION) values (5,'1719803650001','Leydi Valladarez','La Roldos');
+Insert into USUARIO_LEYDI.CLIENTE (ID,RUC,NOMBRE,DIRECCION) values (6,'1217601812001','Grupo5','Amazona y rio coca');
+REM INSERTING into USUARIO_LEYDI.COMPROBANTE_CONTABLE
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.CUENTA
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.DEPRECIACION
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.EMPLEADO
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.FACTURA
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.MODULO_ROL
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.MODULOS
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.MOTIVO
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.NOMINA
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.ROLES
+SET DEFINE OFF;
+REM INSERTING into USUARIO_LEYDI.USUARIOS
+SET DEFINE OFF;
+--------------------------------------------------------
+--  DDL for Index PK_ACTIVO
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_ACTIVO" ON "USUARIO_LEYDI"."ACTIVO" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_ARTICULO
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_ARTICULO" ON "USUARIO_LEYDI"."ARTICULO" ("CODIGO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_CIUDAD
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_CIUDAD" ON "USUARIO_LEYDI"."CIUDAD" ("CODIGO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_CLIENTE
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_CLIENTE" ON "USUARIO_LEYDI"."CLIENTE" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_COMPROBANTE_CONTABLE
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_COMPROBANTE_CONTABLE" ON "USUARIO_LEYDI"."COMPROBANTE_CONTABLE" ("NUMERO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_CUENTA
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_CUENTA" ON "USUARIO_LEYDI"."CUENTA" ("CODIGO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_DEPRECIACION
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_DEPRECIACION" ON "USUARIO_LEYDI"."DEPRECIACION" ("NUMERO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_EMPLEADO
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_EMPLEADO" ON "USUARIO_LEYDI"."EMPLEADO" ("CEDULA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_FACTURA
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_FACTURA" ON "USUARIO_LEYDI"."FACTURA" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_MODULO_ROL
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_MODULO_ROL" ON "USUARIO_LEYDI"."MODULO_ROL" ("MODULO_ID", "ROL_ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_MODULOS
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_MODULOS" ON "USUARIO_LEYDI"."MODULOS" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_MOTIVO
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_MOTIVO" ON "USUARIO_LEYDI"."MOTIVO" ("CODIGO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_NOMINA
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_NOMINA" ON "USUARIO_LEYDI"."NOMINA" ("NUMERO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_ROLES
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_ROLES" ON "USUARIO_LEYDI"."ROLES" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PK_USUARIOS
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "USUARIO_LEYDI"."PK_USUARIOS" ON "USUARIO_LEYDI"."USUARIOS" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  Constraints for Table ACTIVO
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."ACTIVO" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ACTIVO" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ACTIVO" MODIFY ("PERIODOS_DEPRECIACION_TOTAL" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ACTIVO" MODIFY ("VALOR_COMPRA" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ACTIVO" MODIFY ("TIPO_ACTIVO_CODIGO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ACTIVO" ADD CONSTRAINT "PK_ACTIVO" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ARTICULO
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."ARTICULO" MODIFY ("CODIGO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ARTICULO" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ARTICULO" MODIFY ("PRECIO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ARTICULO" ADD CONSTRAINT "PK_ARTICULO" PRIMARY KEY ("CODIGO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CIUDAD
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."CIUDAD" MODIFY ("CODIGO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."CIUDAD" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."CIUDAD" ADD CONSTRAINT "PK_CIUDAD" PRIMARY KEY ("CODIGO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CLIENTE
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."CLIENTE" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."CLIENTE" MODIFY ("RUC" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."CLIENTE" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."CLIENTE" ADD CONSTRAINT "PK_CLIENTE" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table COMPROBANTE_CONTABLE
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."COMPROBANTE_CONTABLE" MODIFY ("NUMERO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."COMPROBANTE_CONTABLE" MODIFY ("FECHA" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."COMPROBANTE_CONTABLE" MODIFY ("TIPO_COMPROBANTE_CODIGO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."COMPROBANTE_CONTABLE" ADD CONSTRAINT "PK_COMPROBANTE_CONTABLE" PRIMARY KEY ("NUMERO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CUENTA
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."CUENTA" MODIFY ("CODIGO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."CUENTA" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."CUENTA" ADD CONSTRAINT "PK_CUENTA" PRIMARY KEY ("CODIGO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table DEPRECIACION
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."DEPRECIACION" MODIFY ("NUMERO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."DEPRECIACION" MODIFY ("FECHA" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."DEPRECIACION" ADD CONSTRAINT "PK_DEPRECIACION" PRIMARY KEY ("NUMERO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table EMPLEADO
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."EMPLEADO" MODIFY ("CEDULA" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."EMPLEADO" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."EMPLEADO" MODIFY ("APELLIDO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."EMPLEADO" ADD CONSTRAINT "PK_EMPLEADO" PRIMARY KEY ("CEDULA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table FACTURA
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."FACTURA" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."FACTURA" MODIFY ("FECHA" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."FACTURA" MODIFY ("CLIENTE_ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."FACTURA" MODIFY ("CIUDAD_CODIGO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."FACTURA" ADD CONSTRAINT "PK_FACTURA" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table MODULO_ROL
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."MODULO_ROL" MODIFY ("MODULO_ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."MODULO_ROL" MODIFY ("ROL_ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."MODULO_ROL" ADD CONSTRAINT "PK_MODULO_ROL" PRIMARY KEY ("MODULO_ID", "ROL_ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table MODULOS
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."MODULOS" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."MODULOS" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."MODULOS" ADD CONSTRAINT "PK_MODULOS" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table MOTIVO
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."MOTIVO" MODIFY ("CODIGO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."MOTIVO" MODIFY ("DESCRIPCION" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."MOTIVO" ADD CONSTRAINT "PK_MOTIVO" PRIMARY KEY ("CODIGO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table NOMINA
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."NOMINA" MODIFY ("NUMERO" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."NOMINA" MODIFY ("EMPLEADO_CEDULA" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."NOMINA" MODIFY ("FECHA" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."NOMINA" ADD CONSTRAINT "PK_NOMINA" PRIMARY KEY ("NUMERO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ROLES
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."ROLES" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ROLES" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."ROLES" ADD CONSTRAINT "PK_ROLES" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table USUARIOS
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."USUARIOS" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."USUARIOS" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."USUARIOS" MODIFY ("ROL_ID" NOT NULL ENABLE);
+  ALTER TABLE "USUARIO_LEYDI"."USUARIOS" ADD CONSTRAINT "PK_USUARIOS" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table COMPROBANTE_CONTABLE
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."COMPROBANTE_CONTABLE" ADD CONSTRAINT "FK_COMPROBANTE_TIPO" FOREIGN KEY ("TIPO_COMPROBANTE_CODIGO")
+	  REFERENCES "USUARIO_LEYDI"."CUENTA" ("CODIGO") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table FACTURA
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."FACTURA" ADD CONSTRAINT "FK_FACTURA_CIUDAD" FOREIGN KEY ("CIUDAD_CODIGO")
+	  REFERENCES "USUARIO_LEYDI"."CIUDAD" ("CODIGO") ENABLE;
+  ALTER TABLE "USUARIO_LEYDI"."FACTURA" ADD CONSTRAINT "FK_FACTURA_CLIENTE" FOREIGN KEY ("CLIENTE_ID")
+	  REFERENCES "USUARIO_LEYDI"."CLIENTE" ("ID") DISABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table MODULO_ROL
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."MODULO_ROL" ADD CONSTRAINT "FK_MODULO" FOREIGN KEY ("MODULO_ID")
+	  REFERENCES "USUARIO_LEYDI"."MODULOS" ("ID") ENABLE;
+  ALTER TABLE "USUARIO_LEYDI"."MODULO_ROL" ADD CONSTRAINT "FK_ROL" FOREIGN KEY ("ROL_ID")
+	  REFERENCES "USUARIO_LEYDI"."ROLES" ("ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table NOMINA
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."NOMINA" ADD CONSTRAINT "FK_NOMINA_EMPLEADO" FOREIGN KEY ("EMPLEADO_CEDULA")
+	  REFERENCES "USUARIO_LEYDI"."EMPLEADO" ("CEDULA") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table USUARIOS
+--------------------------------------------------------
+
+  ALTER TABLE "USUARIO_LEYDI"."USUARIOS" ADD CONSTRAINT "FK_USUARIOS_ROL" FOREIGN KEY ("ROL_ID")
+	  REFERENCES "USUARIO_LEYDI"."ROLES" ("ID") ENABLE;
