@@ -128,6 +128,30 @@ Fuente: [Curso Completo 2023: Base de Datos Oracle Database (Youtube)](https://y
 </details>
 El respaldo de la base de datos del proyecto se encuentra en BDD_Oracle.sql
 
+### Configurar application.properties
+- Dentro de `src/main/resources`, copiar el archivo `application-examples.properties` a `application-local.properties`.
+```
+.
+└── src/
+    └── main/
+        └── resources/
+            ├── application.properties
+            ├── application-examples.properties
+            └── application-local.properties
+```
+- Luego llenar los datos necesarios para la conexión a la base de datos en `application-local.properties`.
+```properties
+spring.application.name=contable
+
+spring.datasource.url=jdbc:oracle:thin:@//localhost:1521/XE
+spring.datasource.username=miusuario
+spring.datasource.password=micontraseña
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
 ## 👩🏽‍💻👩🏻‍💻👨🏻‍💻👨🏻‍💻Contribuidores
 <a href="https://github.com/leydivalladarez/Proyecto2Back/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=leydivalladarez/Proyecto2Back" alt="Contributos" />

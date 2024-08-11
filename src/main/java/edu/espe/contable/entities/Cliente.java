@@ -1,10 +1,14 @@
 package edu.espe.contable.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +28,8 @@ public class Cliente {
 
     @Column(name = "direccion")
     private String direccion;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "clienteId")
+    private Set<Factura> facturas = new LinkedHashSet<>();
 }

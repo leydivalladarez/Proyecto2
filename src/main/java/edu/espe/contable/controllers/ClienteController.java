@@ -6,15 +6,13 @@ import edu.espe.contable.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
-public class RestClientesController {
+public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -33,17 +31,6 @@ public class RestClientesController {
         Cliente cliente = clienteRepository.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException("Cliente no encontrado"));
         return ResponseEntity.ok(cliente);
-    }
-
-    //@RequestMapping(path = "/cliente/{id}/", method = RequestMethod.DELETE)
-    @DeleteMapping("/clientes/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteCliente(@PathVariable Long id){
-        Cliente cliente = clienteRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Cliente no encontrado"));
-
-        clienteRepository.delete(cliente);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/clientes")
@@ -65,5 +52,16 @@ public class RestClientesController {
         }else{
             return ResponseEntity.notFound().build();
         }
+    }
+
+    //@RequestMapping(path = "/cliente/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/clientes/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteCliente(@PathVariable Long id){
+        Cliente cliente = clienteRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Cliente no encontrado"));
+
+        clienteRepository.delete(cliente);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
