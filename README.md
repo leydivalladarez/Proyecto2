@@ -30,11 +30,70 @@ cd Proyecto2Back
 ### Abrir en IDE
 <details>
 <summary>🚀 Netbeans </summary>
-a
+Para compilar tu proyecto en NetBeans, sigue estos pasos:
+
+1. **Importar el Proyecto:**
+ - Abre NetBeans.
+ - Ve a `File > Open Project`.
+ - Navega hasta la carpeta donde está tu proyecto Maven y selecciona la carpeta que contiene el archivo `pom.xml`.
+ - Haz clic en `Open Project`.
+
+2. **Configurar la JDK:**
+ - Asegúrate de que NetBeans esté configurado para usar JDK 17.
+ - Ve a `Tools > Java Platforms` y verifica que JDK 17 esté configurado. Si no es así, agrégalo.
+
+3. **Compilar el Proyecto:**
+ - Después de importar el proyecto, NetBeans debería reconocer automáticamente la configuración de Maven.
+ - Puedes compilar el proyecto haciendo clic derecho sobre él en el panel de proyectos y seleccionando `Build`.
+
+4. **Resolver Problemas de Dependencias:**
+ - Si hay algún problema con las dependencias, asegúrate de que NetBeans esté conectado a internet para descargar las dependencias de Maven.
+ - También puedes forzar la actualización de dependencias haciendo clic derecho en el proyecto y seleccionando `Clean and Build`.
+
+5. **Ejecutar la Aplicación:**
+ - Si todo está correctamente configurado, puedes ejecutar la aplicación desde NetBeans haciendo clic derecho en el proyecto y seleccionando `Run`.
+
+Este proceso debería permitirte compilar y ejecutar tu proyecto en NetBeans sin mayores problemas.
 </details>
 <details>
 <summary>🚀 InteliJ IDEA </summary>
-b
+Para abrir y ejecutar tu proyecto en IntelliJ IDEA, sigue estos pasos:
+
+### 1. **Importar el Proyecto en IntelliJ IDEA:**
+- Abre IntelliJ IDEA.
+- Ve a `File > Open`.
+- Navega hasta la carpeta donde se encuentra tu proyecto Maven y selecciona la carpeta que contiene el archivo `pom.xml`.
+- Haz clic en `Open`. IntelliJ IDEA detectará automáticamente que es un proyecto Maven y comenzará a importar las dependencias.
+
+### 2. **Configurar la JDK:**
+- Asegúrate de que el proyecto esté utilizando JDK 17.
+- Ve a `File > Project Structure` (`Ctrl + Alt + Shift + S` en Windows/Linux, `Command + ;` en macOS).
+- En la sección `Project`, asegúrate de que `Project SDK` esté configurado en JDK 17.
+- Si no tienes JDK 17 configurado, haz clic en `New > JDK` y selecciona la ruta donde tienes instalado JDK 17.
+
+### 3. **Verificar la Configuración de Maven:**
+- IntelliJ IDEA maneja Maven de manera integrada, pero es importante asegurarte de que esté configurado correctamente.
+- Ve a `View > Tool Windows > Maven` para abrir la ventana de Maven.
+- Aquí puedes ver los objetivos de Maven (`clean`, `install`, `spring-boot:run`, etc.).
+- Puedes ejecutar `clean` y luego `install` o `spring-boot:run` directamente desde esta ventana para compilar y ejecutar tu proyecto.
+
+### 4. **Configurar una Configuración de Ejecución (`Run Configuration`):**
+- IntelliJ IDEA generalmente crea automáticamente una configuración de ejecución para Spring Boot.
+- Para verificarla o crear una nueva:
+ - Ve a `Run > Edit Configurations`.
+ - Haz clic en el botón `+` y selecciona `Spring Boot`.
+ - En la configuración, selecciona la clase principal de tu aplicación.
+ - Asegúrate de que la configuración de `Before launch` esté establecida para ejecutar `Build` o `Maven Build`.
+
+### 5. **Ejecutar la Aplicación:**
+- Puedes ejecutar la aplicación directamente desde la configuración de ejecución creada.
+- Haz clic en el botón de `Run` (ícono verde de "play") en la esquina superior derecha, o ve a `Run > Run 'tu_configuración'`.
+
+### 6. **Verificar Dependencias y Compilación:**
+- Si hay problemas con las dependencias o la compilación, IntelliJ IDEA te notificará.
+- Puedes hacer clic en `Maven` en la barra lateral derecha para forzar la actualización de dependencias o limpiar y construir el proyecto nuevamente.
+
+Siguiendo estos pasos, deberías poder abrir y ejecutar tu proyecto Spring Boot en IntelliJ IDEA sin problemas.
 </details>
 
 

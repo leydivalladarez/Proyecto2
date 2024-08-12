@@ -30,6 +30,6 @@ public class Cliente {
     private String direccion;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "clienteId")
+    @OneToMany(mappedBy = "cliente")
     private Set<Factura> facturas = new LinkedHashSet<>();
 }

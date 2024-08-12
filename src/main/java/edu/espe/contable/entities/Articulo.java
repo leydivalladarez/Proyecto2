@@ -17,7 +17,7 @@ public class Articulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CODIGO", nullable = false)
-    private Long id;
+    private Long codigo;
 
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
@@ -26,7 +26,7 @@ public class Articulo {
     private BigDecimal precio;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "articuloCodigo")
+    @OneToMany(mappedBy = "articulo")
     private Set<FacturaDetalle> facturaDetalles = new LinkedHashSet<>();
 
 }

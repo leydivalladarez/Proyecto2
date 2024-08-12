@@ -22,6 +22,6 @@ public class Ciudad {
     private String nombre;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ciudadCodigo")
+    @OneToMany(mappedBy = "ciudad")
     private Set<Factura> facturas = new LinkedHashSet<>();
 }

@@ -1,5 +1,7 @@
 package edu.espe.contable.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,13 +17,13 @@ import java.math.BigDecimal;
 @Table(name = "FACTURA_DETALLE")
 public class FacturaDetalle {
     @Id
-    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne()
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "ARTICULO_CODIGO", nullable = false)
-    private Articulo articuloCodigo;
+    private Articulo articulo;
 
     @ColumnDefault("1")
     @Column(name = "CANTIDAD", nullable = false)
@@ -30,7 +32,8 @@ public class FacturaDetalle {
     @Column(name = "PRECIO", nullable = false, precision = 8, scale = 2)
     private BigDecimal precio;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JsonIgnore
+    @ManyToOne()
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "FACTURA_ID", nullable = false)
     private Factura factura;
