@@ -3,7 +3,7 @@
 - Oracle Database
 - Netbeans 12 o superior
 - IntelliJ IDEA (Opcional, en reemplazo de Netbeans)
-- Java JDK 17
+- Java JDK ~~17~~ (Actualizado a 21)
 - Tomcat
 - Spring Boot (v3.3.2)
 - Maven
