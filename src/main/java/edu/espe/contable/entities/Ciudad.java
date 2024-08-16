@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -24,4 +25,18 @@ public class Ciudad {
     @JsonIgnore
     @OneToMany(mappedBy = "ciudad")
     private Set<Factura> facturas = new LinkedHashSet<>();
+
+    public BigDecimal obtenerVentasTotales() {
+        BigDecimal totalVentas = BigDecimal.ZERO;
+
+        for (Factura factura : facturas) {
+            for (FacturaDetalle detalle : factura.getFacturaDetalles()) {
+                BigDecimal precio = detalle.getPrecio();
+                BigDecimal cantidad = BigDecimal.valueOf(detalle.getCantidad());
+                totalVentas = totalVentas.add(precio.multiply(cantidad));
+            }
+        }
+
+        return totalVentas;
+    }
 }

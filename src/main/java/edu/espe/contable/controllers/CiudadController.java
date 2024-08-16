@@ -1,5 +1,6 @@
 package edu.espe.contable.controllers;
 
+import edu.espe.contable.dtos.CiudadVentasDTO;
 import edu.espe.contable.entities.Ciudad;
 import edu.espe.contable.exception.ResourceNotFoundException;
 import edu.espe.contable.repository.CiudadRepository;
