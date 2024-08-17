@@ -1,9 +1,13 @@
 package edu.espe.contable.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import javax.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,5 +24,9 @@ public class Motivo {
     @Column(name = "TIPO", length = 20)
     @Pattern(regexp = "ingreso|egreso", message = "El tipo debe ser 'ingreso' o 'egreso'")
     private String tipo;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "motivo")
+    private Set<NominaDetalle> nominaDetalles = new LinkedHashSet<>();
 
 }

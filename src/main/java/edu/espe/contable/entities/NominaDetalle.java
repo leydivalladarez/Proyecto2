@@ -1,5 +1,6 @@
 package edu.espe.contable.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class NominaDetalle {
     @Column(name = "VALOR", nullable = false, precision = 8, scale = 2)
     private BigDecimal valor;
 
+    @JsonIgnore
     @ManyToOne()
     @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.RESTRICT)
     @JoinColumn(name = "NOMINA_NUMERO", nullable = false)

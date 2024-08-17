@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1")
 public class MotivoController {
     @Autowired
@@ -40,6 +41,7 @@ public class MotivoController {
 
         if (motivo != null){
             motivo.setNombre(motivoRequest.getNombre());
+            motivo.setTipo(motivoRequest.getTipo());
 
             Motivo motivoUpdated = motivoRepository.save(motivo);
             return ResponseEntity.ok(motivoUpdated);

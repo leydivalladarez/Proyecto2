@@ -17,6 +17,9 @@ import java.util.Set;
 @Table(name = "EMPLEADO")
 public class Empleado {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @Column(name = "CEDULA", nullable = false, length = 10)
     private String cedula;
 

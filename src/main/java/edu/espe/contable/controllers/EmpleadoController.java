@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1")
 public class EmpleadoController {
     @Autowired
@@ -22,9 +23,9 @@ public class EmpleadoController {
         return empleadoRepository.findAll();
     }
 
-    @GetMapping("/empleados/{cedula}")
-    public ResponseEntity<Empleado> getempleado(@PathVariable String cedula){
-        Empleado empleado = empleadoRepository.findById(cedula)
+    @GetMapping("/empleados/{id}")
+    public ResponseEntity<Empleado> getempleado(@PathVariable Long id){
+        Empleado empleado = empleadoRepository.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException("Empleado no encontrado"));
         return ResponseEntity.ok(empleado);
     }
@@ -34,11 +35,12 @@ public class EmpleadoController {
         return empleadoRepository.save(empleado);
     }
 
-    @PutMapping("/empleados/{cedula}")
-    public ResponseEntity<Empleado> updateempleado(@PathVariable String cedula, @RequestBody Empleado empleadoRequest){
-        Empleado empleado = empleadoRepository.findById(cedula).orElseThrow(()->new ResourceNotFoundException("Empleado no encontrado"));
+    @PutMapping("/empleados/{id}")
+    public ResponseEntity<Empleado> updateempleado(@PathVariable Long id, @RequestBody Empleado empleadoRequest){
+        Empleado empleado = empleadoRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Empleado no encontrado"));
 
         if (empleado != null){
+            empleado.setCedula(empleadoRequest.getCedula());
             empleado.setNombre(empleadoRequest.getNombre());
             empleado.setFechaIngreso(empleadoRequest.getFechaIngreso());
             empleado.setSueldo(empleadoRequest.getSueldo());
@@ -50,9 +52,9 @@ public class EmpleadoController {
         }
     }
 
-    @DeleteMapping("/empleados/{cedula}")
-    public ResponseEntity<Map<String, Boolean>> deleteempleado(@PathVariable String cedula){
-        Empleado empleado = empleadoRepository.findById(cedula).orElseThrow(()->new ResourceNotFoundException("Empleado no encontrado"));
+    @DeleteMapping("/empleados/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteempleado(@PathVariable Long id){
+        Empleado empleado = empleadoRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Empleado no encontrado"));
 
         empleadoRepository.delete(empleado);
         Map<String, Boolean> response = new HashMap<>();

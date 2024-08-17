@@ -42,8 +42,8 @@ public class NominaController {
     @Transactional
     @PostMapping("/nominas")
     public Nomina addNomina(@RequestBody Nomina nomina) {
-        String empleadoCedula = nomina.getEmpleado().getCedula();
-        Empleado empleado = empleadoRepository.findById(empleadoCedula)
+        Long empleadoId = nomina.getEmpleado().getId();
+        Empleado empleado = empleadoRepository.findById(empleadoId)
                 .orElseThrow(() -> new ResourceNotFoundException("Empleado no encontrada"));
         nomina.setEmpleado(empleado);
         
@@ -80,7 +80,7 @@ public class NominaController {
         for (NominaDetalle detalle : nominaRequest.getNominaDetalles()) {
             Long motivoCodigo = detalle.getMotivo().getCodigo();
             Motivo motivo = motivoRepository.findById(motivoCodigo)
-                    .orElseThrow(() -> new ResourceNotFoundException("Artículo no encontrada"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Motivo no encontrado"));
             detalle.setMotivo(motivo);
             detalle.setNomina(nomina); // Asocia el detalle con la nomina
             nominaDetalleRepository.save(detalle);

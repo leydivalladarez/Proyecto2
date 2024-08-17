@@ -19,7 +19,7 @@ public class Nomina {
 
     @ManyToOne()
     @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "EMPLEADO_CEDULA", nullable = false)
+    @JoinColumn(name = "EMPLEADO_ID", nullable = false)
     private Empleado empleado;
 
     @Column(name = "FECHA", nullable = false)
