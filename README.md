@@ -3,7 +3,7 @@
 - Oracle Database
 - Netbeans 12 o superior
 - IntelliJ IDEA (Opcional, en reemplazo de Netbeans)
-- Java JDK ~~17~~ (Actualizado a 21)
+- Java JDK 21 (~~Antes 17~~)
 - Tomcat
 - Spring Boot (v3.3.2)
 - Maven
@@ -14,7 +14,7 @@
 ### Frontend: React
 
 ## 🏁 Iniciar
-Antes de iniciar se requiere tener instalado JDK 17 y Apache Tomcat/10.1.26.
+Antes de iniciar se requiere tener instalado JDK 21 y Apache Tomcat/10.1.26.
 
 ### Clonar Repositorio
 Vía HTTPS
@@ -39,8 +39,8 @@ Para compilar tu proyecto en NetBeans, sigue estos pasos:
  - Haz clic en `Open Project`.
 
 2. **Configurar la JDK:**
- - Asegúrate de que NetBeans esté configurado para usar JDK 17.
- - Ve a `Tools > Java Platforms` y verifica que JDK 17 esté configurado. Si no es así, agrégalo.
+ - Asegúrate de que NetBeans esté configurado para usar JDK 21.
+ - Ve a `Tools > Java Platforms` y verifica que JDK 21 esté configurado. Si no es así, agrégalo.
 
 3. **Compilar el Proyecto:**
  - Después de importar el proyecto, NetBeans debería reconocer automáticamente la configuración de Maven.
@@ -66,10 +66,10 @@ Para abrir y ejecutar tu proyecto en IntelliJ IDEA, sigue estos pasos:
 - Haz clic en `Open`. IntelliJ IDEA detectará automáticamente que es un proyecto Maven y comenzará a importar las dependencias.
 
 ### 2. **Configurar la JDK:**
-- Asegúrate de que el proyecto esté utilizando JDK 17.
+- Asegúrate de que el proyecto esté utilizando JDK 21.
 - Ve a `File > Project Structure` (`Ctrl + Alt + Shift + S` en Windows/Linux, `Command + ;` en macOS).
-- En la sección `Project`, asegúrate de que `Project SDK` esté configurado en JDK 17.
-- Si no tienes JDK 17 configurado, haz clic en `New > JDK` y selecciona la ruta donde tienes instalado JDK 17.
+- En la sección `Project`, asegúrate de que `Project SDK` esté configurado en JDK 21.
+- Si no tienes JDK 21 configurado, haz clic en `New > JDK` y selecciona la ruta donde tienes instalado JDK 21.
 
 ### 3. **Verificar la Configuración de Maven:**
 - IntelliJ IDEA maneja Maven de manera integrada, pero es importante asegurarte de que esté configurado correctamente.
@@ -99,6 +99,9 @@ Siguiendo estos pasos, deberías poder abrir y ejecutar tu proyecto Spring Boot 
 
 
 ### Arrancar Base de Datos (Oracle)
+Actualizado (19/08/2024). (Pendiente actualizacion de usuario y roles)
+Limpiar la anterior base de datos y volver a crear.
+
 <details>
 
 <summary>Abrir SQL PLUS</summary>

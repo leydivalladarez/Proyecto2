@@ -20,8 +20,12 @@ public class CiudadController {
     private CiudadRepository ciudadRepository;
 
     @GetMapping("/ciudades")
-    public List<Ciudad> ciudades(){
-        return ciudadRepository.findAll();
+    public List<Ciudad> ciudades(@RequestParam(required = false) String buscar){
+        if(buscar == null || buscar.isEmpty()){
+            return ciudadRepository.findAll();
+        }else {
+            return ciudadRepository.findByNombreContainingIgnoreCase(buscar);
+        }
     }
 
     @GetMapping("/ciudades/{codigo}")

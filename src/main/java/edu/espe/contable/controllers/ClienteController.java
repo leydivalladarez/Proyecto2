@@ -23,8 +23,13 @@ public class ClienteController {
     }
 
     @GetMapping("/clientes")
-    public List<Cliente> clientes(){
-        return clienteRepository.findAll();
+    public List<Cliente> clientes(@RequestParam(required = false) String ruc,
+                                  @RequestParam(required = false) String nombre) {
+        if ((ruc == null || ruc.isEmpty()) && (nombre == null || nombre.isEmpty())) {
+            return clienteRepository.findAll();
+        } else {
+            return clienteRepository.findByRucContainingOrNombreContainingIgnoreCase(ruc, nombre);
+        }
     }
 
     @GetMapping("/clientes/{id}")
