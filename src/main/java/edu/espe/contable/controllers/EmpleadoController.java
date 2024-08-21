@@ -19,8 +19,12 @@ public class EmpleadoController {
     private EmpleadoRepository empleadoRepository;
 
     @GetMapping("/empleados")
-    public List<Empleado> empleados(){
-        return empleadoRepository.findAll();
+    public List<Empleado> empleados(@RequestParam(required = false) String buscar){
+        if(buscar == null || buscar.isEmpty()){
+            return empleadoRepository.findAll();
+        }else{
+            return empleadoRepository.findByCedulaContainingOrNombreContainingIgnoreCase(buscar, buscar);
+        }
     }
 
     @GetMapping("/empleados/{id}")

@@ -29,8 +29,19 @@ public class NominaController {
     private MotivoRepository motivoRepository;
 
     @GetMapping("/nominas")
-    public List<Nomina> nominas() {
-        return nominaRepository.findAll();
+    public List<Nomina> nominas(@RequestParam(required = false) String numero,
+                                @RequestParam(required = false) String nombre) {
+        Long numeroLong = null;
+        if (numero != null) {
+            try {
+                numeroLong = Long.parseLong(numero);
+            } catch (NumberFormatException ignored) {}
+        }
+        if (numeroLong == null && nombre == null) {
+            return nominaRepository.findAll();
+        }else{
+            return nominaRepository.findByNumeroOrEmpleado_NombreContainsIgnoreCase(numeroLong, nombre);
+        }
     }
 
     @GetMapping("/nominas/{numero}")

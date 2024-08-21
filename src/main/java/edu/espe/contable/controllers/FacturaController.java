@@ -32,8 +32,20 @@ public class FacturaController {
     private ArticuloRepository articuloRepository;
 
     @GetMapping("/facturas")
-    public List<Factura> facturas() {
-        return facturaRepository.findAll();
+    public List<Factura> facturas(@RequestParam(required = false) String id,
+                                  @RequestParam(required = false) String nombre) {
+        Long idLong = null;
+        if (id != null) {
+            try {
+                idLong = Long.parseLong(id);
+            } catch (NumberFormatException ignored) {}
+        }
+
+        if (idLong == null && nombre == null) {
+            return facturaRepository.findAll();
+        }else{
+            return facturaRepository.findByIdOrCliente_NombreContainingIgnoreCase(idLong,nombre);
+        }
     }
 
     @GetMapping("/facturas/{id}")

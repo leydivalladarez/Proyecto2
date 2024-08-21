@@ -19,8 +19,12 @@ public class MotivoController {
     private MotivoRepository motivoRepository;
 
     @GetMapping("/motivos")
-    public List<Motivo> motivos(){
-        return motivoRepository.findAll();
+    public List<Motivo> motivos(@RequestParam(required = false) String buscar){
+        if(buscar == null || buscar.isEmpty()){
+            return motivoRepository.findAll();
+        }else{
+            return motivoRepository.findByNombreContainingIgnoreCaseOrTipoContainingIgnoreCase(buscar, buscar);
+        }
     }
 
     @GetMapping("/motivos/{codigo}")
