@@ -6,6 +6,7 @@ import edu.espe.contable.entities.DepreciacionDetalle;
 import edu.espe.contable.repository.CiudadRepository;
 import edu.espe.contable.repository.DepreciacionDetalleRepository;
 import edu.espe.contable.repository.NominaRepository;
+import edu.espe.contable.services.BalanceService;
 import edu.espe.contable.services.ReporteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,10 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,6 +27,7 @@ public class ReporteController {
     @Autowired
     private CiudadRepository ciudadRepository;
 
+    //Reportes de Facturación
     @GetMapping("ventas-totales-ciudades")
     public ResponseEntity<List<CiudadVentasDTO>> obtenerTodasLasCiudadesConVentasTotales(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
@@ -57,6 +56,7 @@ public class ReporteController {
         return ResponseEntity.ok(reporte);
     }
 
+    //Reportes de Nómina
     @Autowired
     NominaRepository nominaRepository;
 
@@ -88,15 +88,21 @@ public class ReporteController {
         return ResponseEntity.ok(reporte);
     }
 
+    //Reportes de Activos
     @Autowired
     DepreciacionDetalleRepository depreciacionDetalleRepository;
 
     @GetMapping("/depreciaciones")
     public ResponseEntity<List<DepreciacionReporteDTO>> reporteDepreciacion(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate  fechaInicio,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate  fechaInicio,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
 
-        List<DepreciacionDetalle> detalles = depreciacionDetalleRepository.findByDepreciacion_FechaBetween(fechaInicio, fechaFin);
+        List<DepreciacionDetalle> detalles;
+        if(fechaInicio == null || fechaFin == null) {
+            detalles = depreciacionDetalleRepository.findAll();
+        }else{
+            detalles = depreciacionDetalleRepository.findByDepreciacion_FechaBetween(fechaInicio, fechaFin);
+        }
 
         Map<Activo, Double> reporte = new HashMap<>();
         for (DepreciacionDetalle detalle : detalles) {
@@ -110,4 +116,23 @@ public class ReporteController {
         return ResponseEntity.ok(reporteDTOs);
     }
 
+    //Reportes de Contabilidad
+    @Autowired
+    private BalanceService balanceService;
+
+    @GetMapping("/balance-general")
+    public ResponseEntity<List<CuentaBalanceDTO>> getBalanceGeneral(
+            @RequestParam Optional<LocalDate> fechaInicio,
+            @RequestParam Optional<LocalDate> fechaFin) {
+        List<CuentaBalanceDTO> balance = balanceService.getBalanceGeneral(fechaInicio, fechaFin);
+        return ResponseEntity.ok(balance);
+    }
+
+    @GetMapping("/estado-resultados")
+    public ResponseEntity<List<CuentaResultadoDTO>> getEstadoResultados(
+            @RequestParam Optional<LocalDate> fechaInicio,
+            @RequestParam Optional<LocalDate> fechaFin) {
+        List<CuentaResultadoDTO> balance = balanceService.getEstadoResultados(fechaInicio, fechaFin);
+        return ResponseEntity.ok(balance);
+    }
 }

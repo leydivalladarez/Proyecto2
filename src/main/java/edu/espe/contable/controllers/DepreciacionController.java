@@ -31,13 +31,19 @@ public class DepreciacionController {
     private TipoActivoRepository tipoActivoRepository;
 
     @GetMapping("/depreciaciones")
-    public List<Depreciacion> depreciaciones(@RequestParam(required = false) Long numero,
+    public List<Depreciacion> depreciaciones(@RequestParam(required = false) String numero,
                                              @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha,
                                              @RequestParam(required = false) String responsable) {
-        if (numero == null && fecha == null && responsable == null) {
+        Long numeroL = null;
+        if(numero != null){
+            try {
+                numeroL = Long.parseLong(numero);
+            } catch (NumberFormatException ignored) {}
+        }
+        if (numeroL == null && fecha == null && responsable == null) {
             return depreciacionRepository.findAll();
         } else {
-            return depreciacionRepository.findDepreciacionByNumeroOrFechaOrResponsableEndingWithIgnoreCase(numero, fecha, responsable);
+            return depreciacionRepository.findByNumeroOrFechaOrResponsableContainingIgnoreCase(numeroL, fecha, responsable);
         }
     }
 

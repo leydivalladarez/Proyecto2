@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface DepreciacionRepository extends JpaRepository<Depreciacion, Long> {
-    List<Depreciacion> findDepreciacionByNumeroOrFechaOrResponsableEndingWithIgnoreCase(Long numero, Date fecha, String responsable);
+    List<Depreciacion> findByNumeroOrFechaOrResponsableContainingIgnoreCase(Long numero, Date fecha, String responsable);
 }
