@@ -1,24 +1,3 @@
-create table CUENTA
-(
-    CODIGO NUMBER generated as identity
-        constraint PK_CUENTA
-            primary key,
-    NOMBRE VARCHAR2(45) not null
-)
-/
-
-create table COMPROBANTE_CONTABLE
-(
-    NUMERO                  NUMBER generated as identity
-        constraint PK_COMPROBANTE_CONTABLE
-            primary key,
-    FECHA                   DATE   not null,
-    TIPO_COMPROBANTE_CODIGO NUMBER not null
-        constraint FK_COMPROBANTE_TIPO
-            references CUENTA
-)
-/
-
 create table DEPRECIACION
 (
     NUMERO        NUMBER generated as identity
@@ -74,37 +53,14 @@ create table NOMINA
 )
 /
 
-create table ROLES
-(
-    ID     NUMBER generated as identity
-        constraint PK_ROLES
-            primary key,
-    NOMBRE VARCHAR2(45) not null
-)
-/
-
 create table MODULO_ROL
 (
     MODULO_ID NUMBER not null
         constraint FK_MODULO
             references MODULOS,
-    ROL_ID    NUMBER not null
-        constraint FK_ROL
-            references ROLES,
+    ROL_ID    NUMBER not null,
     constraint PK_MODULO_ROL
         primary key (MODULO_ID, ROL_ID)
-)
-/
-
-create table USUARIOS
-(
-    ID     NUMBER generated as identity
-        constraint PK_USUARIOS
-            primary key,
-    NOMBRE VARCHAR2(100) not null,
-    ROL_ID NUMBER        not null
-        constraint FK_USUARIOS_ROL
-            references ROLES
 )
 /
 
@@ -154,7 +110,7 @@ create table ARTICULO
 
 create table FACTURA_DETALLE
 (
-    ID              NUMBER default "ISEQ$$_78868".nextval generated as identity
+    ID              NUMBER generated as identity
 		constraint FACTURA_DETALLE_PK
 			primary key,
     FACTURA_ID      NUMBER           not null
@@ -219,6 +175,90 @@ create table DEPRECIACION_DETALLE
     DEPRECIACION_NUMERO  NUMBER       not null
         constraint DEPRECIACION_DETALLE_DEPRECIACION_NUMERO_FK
             references DEPRECIACION
+)
+/
+
+create table TIPO_CUENTA
+(
+    CODIGO NUMBER generated as identity
+        constraint TIPO_CUENTA_PK
+            primary key,
+    NOMBRE VARCHAR2(100) not null
+)
+/
+
+create table CUENTA
+(
+    CODIGO              NUMBER generated as identity
+        constraint PK_CUENTA
+            primary key,
+    NOMBRE              VARCHAR2(100) not null,
+    TIPO_CUENTA_CODIGO  NUMBER        not null
+        constraint CUENTA_TIPO_CUENTA_CODIGO_FK
+            references TIPO_CUENTA,
+    CUENTA_PADRE_CODIGO NUMBER
+        constraint CUENTA_CUENTA_CODIGO_FK
+            references CUENTA
+)
+/
+
+comment on column CUENTA.CUENTA_PADRE_CODIGO is 'Se maneja jerarquias de cuentas'
+/
+
+create table COMPROBANTE_CONTABILIDAD
+(
+    NUMERO        NUMBER generated as identity
+		constraint COMPROBANTE_CONTABILIDAD_PK
+			primary key,
+    FECHA         DATE   default sysdate not null,
+    OBSERVACIONES VARCHAR2(255)
+)
+/
+
+create table COMPROBANTE_CONTABILIDAD_DETALLE
+(
+    ID                              NUMBER generated as identity
+        constraint COMPROBANTE_CONTABILIDAD_DETALLE_PK
+            primary key,
+    CUENTA_CODIGO                   NUMBER not null
+        constraint COMPROBANTE_CONTABILIDAD_DETALLE_CUENTA_CODIGO_FK
+            references CUENTA,
+    DEBE                            NUMBER(8, 2),
+    HABER                           NUMBER(8, 2),
+    COMPROBANTE_CONTABILIDAD_NUMERO NUMBER not null
+        constraint COMPROBANTE_CONTABILIDAD_DETALLE_COMPROBANTE_CONTABILIDAD_NUMERO_FK
+            references COMPROBANTE_CONTABILIDAD
+)
+/
+
+create table ROLES
+(
+    ID     NUMBER generated as identity
+        constraint ROLES_PK
+            primary key,
+    NOMBRE VARCHAR2(45) not null
+)
+/
+
+create table USUARIOS
+(
+    ID             NUMBER       generated as identity
+		constraint PK_USUARIOS
+			primary key,
+    ROL_ID         NUMBER                                 not null,
+    USERNAME       VARCHAR2(100)                          not null
+        constraint USERNAME
+            unique,
+    PASSWORD       VARCHAR2(255),
+    EMAIL          VARCHAR2(255)                          not null
+        constraint EMAIL
+            unique,
+    ACCOUNT_STATUS VARCHAR2(20) default 'ACTIVE'          not null,
+    CREATED_AT     TIMESTAMP(6) default CURRENT_TIMESTAMP not null,
+    UPDATED_AT     TIMESTAMP(6) default CURRENT_TIMESTAMP not null,
+    NOMBRE         VARCHAR2(100)                          not null,
+    constraint USUARIOS_ROLES_ID_FK
+        foreign key () references ROLES
 )
 /
 
